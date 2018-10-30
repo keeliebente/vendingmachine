@@ -27,12 +27,12 @@ namespace CapstoneTests
         }
 
         [TestMethod()]
-        public void CorrectProductTest()
+        public void PurchaseSuccessfulTest()
         {
             vendingMachine.ReadFile();
             vendingMachine.FeedMoney(50.00M);
-            string result = vendingMachine.ProductSelection("A1");
-            Assert.AreEqual("Potato Crisps A1", result);
+            int result = vendingMachine.ProductSelection("A1");
+            Assert.AreEqual(4, result);
         }
 
         [TestMethod()]
@@ -40,13 +40,13 @@ namespace CapstoneTests
         {
             vendingMachine.ReadFile();
             vendingMachine.FeedMoney(50.00M);
-            string result = vendingMachine.ProductSelection("A1");
+            int result = vendingMachine.ProductSelection("A1");
             result = vendingMachine.ProductSelection("A1");
             result = vendingMachine.ProductSelection("A1");
             result = vendingMachine.ProductSelection("A1");
             result = vendingMachine.ProductSelection("A1");
             result = vendingMachine.ProductSelection("A1");
-            Assert.AreEqual("SOLD OUT", result);
+            Assert.AreEqual(2, result);
         }
 
         [TestMethod()]
@@ -54,8 +54,8 @@ namespace CapstoneTests
         {
             vendingMachine.ReadFile();
             vendingMachine.FeedMoney(2.00M);
-            string result = vendingMachine.ProductSelection("A1");
-            Assert.AreEqual("Not Enough Money", result);
+            int result = vendingMachine.ProductSelection("A1");
+            Assert.AreEqual(3, result);
         }
 
         [TestMethod()]
@@ -63,8 +63,8 @@ namespace CapstoneTests
         {
             vendingMachine.ReadFile();
             vendingMachine.FeedMoney(2.00M);
-            string result = vendingMachine.ProductSelection("A6");
-            Assert.AreEqual("INVALID ITEM SELECTION", result);
+            int result = vendingMachine.ProductSelection("A6");
+            Assert.AreEqual(1, result);
         }
 
         [TestMethod()]
@@ -72,17 +72,17 @@ namespace CapstoneTests
         {
             vendingMachine.ReadFile();
             vendingMachine.FeedMoney(50.00M);
-            string result = vendingMachine.ConsumedMessage("A3");
-            Assert.AreEqual("Crunch Crunch, Yum!", result);
+            int result = vendingMachine.ConsumedMessage("A3");
+            Assert.AreEqual(1, result);
 
             result = vendingMachine.ConsumedMessage("C2");
-            Assert.AreEqual("Glug Glug, Yum!", result);
+            Assert.AreEqual(3, result);
 
             result = vendingMachine.ConsumedMessage("B2");
-            Assert.AreEqual("Munch Munch, Yum!", result);
+            Assert.AreEqual(2, result);
 
             result = vendingMachine.ConsumedMessage("D3");
-            Assert.AreEqual("Chew Chew, Yum!", result);
+            Assert.AreEqual(4, result);
         }
 
         [TestMethod()]
